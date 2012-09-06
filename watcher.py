@@ -169,6 +169,7 @@ class EventHandler(pyinotify.ProcessEvent):
         self.parent = parent       #should be calling instance of WatcherDaemon
         self.prefix = prefix       #prefix to handle recursively watching new dirs
         self.root = root        #root of watch (actually used to calculate subdirs)
+
     def runCommand(self, event):
         t = Template(self.command)
         
@@ -199,6 +200,7 @@ class EventHandler(pyinotify.ProcessEvent):
             prefix = event.name
             if self.prefix != "":
                 prefix = self.prefix + '/' + prefix
+                
             self.parent.addWatch(self.mask, 
                                  event.pathname, 
                                  True, 
